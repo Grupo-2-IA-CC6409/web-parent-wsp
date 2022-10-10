@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     # internal
     "base.apps.BaseConfig",
+    "accounts.apps.AccountsConfig",
 ]
 
 if DEBUG:
@@ -115,6 +116,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# change default auth user model
+
+AUTH_USER_MODEL = "accounts.User"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -142,4 +146,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGOUT_REDIRECT_URL = "/"
 
 # enable bootstrap for crispy-forms
-CRISPY_TEMPLATE_PACK = "bootstrap"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
