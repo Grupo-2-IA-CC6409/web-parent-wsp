@@ -1,0 +1,8 @@
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+<form enctype="multipart/form-data" action="{{action}}" method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <input class="btn btn-primary" type="submit" value="{% translate 'Submit' %}">
+</form>
