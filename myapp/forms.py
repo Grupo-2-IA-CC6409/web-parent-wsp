@@ -1,12 +1,19 @@
+from asyncore import write
+from enum import unique
+from msilib.schema import Class
 from django.forms import ModelForm
 from django import forms
+from django.db import models
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
+from .models import CustomUser
+
+
 
 class CreateUserForm(UserCreationForm):
-    email = forms.EmailField()
-    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirma Contraseña', widget=forms.PasswordInput)
+
     class Meta:
-        model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        model = CustomUser
+        fields = ['first_name', 'last_name','email', 'password1','password2']
+
+
