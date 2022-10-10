@@ -1,0 +1,18 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block content %}
+  {% block before_form %}
+  {% endblock %}
+  <div class="d-flex border border-black p-5 justify-content-center">
+    <form action="" method="post">
+      {% csrf_token %}
+      <p>{% trans "Are you sure you want to delete" %} "{{ object }}"?</p>
+      <br>
+      <div class="d-flex justify-content-center">
+        <input class="btn btn-outline-danger mr-2" type="submit" value="{% trans 'Confirm' %}">
+        <a class="btn btn-outline-secondary" href="{{ object.get_absolute_url }}">{% trans "Cancel" %}</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}
