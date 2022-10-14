@@ -1,0 +1,18 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<a class="btn btn-outline-primary mb-3" href="{% url "user_update" %}">Actualizar</a>
+<div class="border border-dark p-5">
+  <p>
+    <span class="font-weight-bold">Email:</span> {{ user.email }}  
+  </p>
+  <br>
+  <p>
+    <span class="font-weight-bold">First name:</span> {{ user.first_name }}  
+  </p>
+  <br>
+  <p>
+    <span class="font-weight-bold">Last name:</span> {{ user.last_name }}  
+  </p>
+</div>
+{% endblock %}
