@@ -1,6 +1,6 @@
 {% extends "base/base.html" %}
 {% load static %}
-   
+{% load extras %}
 {% block content %}
 <div class="d-flex justify-content-center">
     <h1>ParentWsp</h1>
@@ -8,5 +8,11 @@
 <div class="d-flex justify-content-center">
     <a class="btn btn-primary mx-2" href="{% url "qr" %}">Generar QR</a>
 </div>
+<div class="d-flex justify-content-center">
+    <img src="{% get_qr %}"></a>
+</div>
+
 
 {% endblock %}
+
+

@@ -18,3 +18,5 @@ def file_path(instance, name):
     """
     date = timezone.datetime.now().date()
     return f"{instance.__class__.__name__}/{date}/{uuid4()}/{name}"
+
+

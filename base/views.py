@@ -1,4 +1,5 @@
 # django
+from django.shortcuts import render
 from django.views.generic import DetailView
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
@@ -9,8 +10,9 @@ from django.views.generic.list import ListView
 from .mixins import IndividualPermissionMixin
 from .mixins import LoginPermissionRequiredMixin
 from .mixins import TitleMixin
-
-
+import qrcode
+import requests
+import logging
 class BaseTemplateView(LoginPermissionRequiredMixin, TitleMixin, TemplateView):
     login_required = True
     permission_required = ()
@@ -70,5 +72,18 @@ class BaseDeleteView(
 class IndexView(BaseTemplateView):
     title = "ParentWsp"
     template_name = "base/index.html"
-    login_required = False
+    login_required = True
     permission_required = ()
+
+
+class IndexViewQr(BaseTemplateView):
+    
+    title = "ParentWsp"
+    template_name = "base/qr.html"
+    login_required = True
+    permission_required = ()
+
+    
+    
+
+    
