@@ -1,5 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser
-from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.urls import reverse
 
@@ -43,10 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_full_name(self):
         # Returns the full name of the user
-        return f"{self.name} {self.first_last_name} {self.second_last_name}"
-
-    def get_short_name(self):
-        return f"{self.name} {self.first_last_name}"
+        return f"{self.first_name} {self.last_name}"
 
     def __str__(self):
         return self.get_full_name()

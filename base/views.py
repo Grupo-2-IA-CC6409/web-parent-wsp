@@ -1,14 +1,9 @@
 # django
-from django.views.generic import DetailView
-from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView
-from django.views.generic.edit import DeleteView
-from django.views.generic.edit import UpdateView
+from django.views.generic import DetailView, TemplateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
-from .mixins import IndividualPermissionMixin
-from .mixins import LoginPermissionRequiredMixin
-from .mixins import TitleMixin
+from .mixins import IndividualPermissionMixin, LoginPermissionRequiredMixin, TitleMixin
 
 
 class BaseTemplateView(LoginPermissionRequiredMixin, TitleMixin, TemplateView):
@@ -65,10 +60,3 @@ class BaseDeleteView(
             return self.title
         verbose_name = self.model._meta.verbose_name
         return f"{'Delete'}: {verbose_name}"
-
-
-class IndexView(BaseTemplateView):
-    title = "ParentWsp"
-    template_name = "base/index.html"
-    login_required = False
-    permission_required = ()

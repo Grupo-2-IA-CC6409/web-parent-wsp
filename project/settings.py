@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     # internal
     "base.apps.BaseConfig",
     "accounts.apps.AccountsConfig",
+    "parentwsp.apps.ParentwspConfig",
+    "fontawesomefree",
 ]
 
 if DEBUG:

@@ -2,12 +2,9 @@ from django.contrib.auth import views as auth_views
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from base.views import BaseCreateView
-from base.views import BaseDetailView
-from base.views import BaseUpdateView
+from base.views import BaseCreateView, BaseDetailView, BaseUpdateView
 
-from .forms import RegisterForm
-from .forms import UserChangeForm
+from .forms import RegisterForm, UserChangeForm
 
 
 class LoginView(auth_views.LoginView):
