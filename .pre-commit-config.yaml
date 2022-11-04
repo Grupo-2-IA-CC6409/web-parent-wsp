@@ -23,12 +23,3 @@ repos:
         fail_fast: true
         stages:
         - push
-
-      - id: tests
-        name: run tests
-        entry: python3 manage.py test
-        language: system
-        always_run: true
-        pass_filenames: false
-        stages:
-        - push
