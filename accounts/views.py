@@ -1,6 +1,5 @@
 from django.contrib.auth import views as auth_views
 from django.urls import reverse
-from django.utils.translation import gettext_lazy as _
 
 from base.views import BaseCreateView, BaseDetailView, BaseUpdateView
 

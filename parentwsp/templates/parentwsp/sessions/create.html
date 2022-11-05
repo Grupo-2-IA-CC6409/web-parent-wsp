@@ -7,7 +7,7 @@
 <form id="formQR" enctype="multipart/form-data" action="{{action}}" method="post">
   {% csrf_token %}
   {{ form|crispy }}
-  <input class="btn btn-primary" type="submit" value="{% translate 'Submit' %}">
+  <input class="btn btn-primary" type="submit" value="Enviar">
 </form>
 <div class="row justify-content-md-center">
   <div class="col-md-auto">

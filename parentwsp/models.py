@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.urls import reverse
 
 from accounts.models import User
 
@@ -21,3 +22,9 @@ class Session(models.Model):
     external_uuid = models.UUIDField(
         default=uuid.uuid4,
     )
+
+    def __str__(self) -> str:
+        return f"Sesion: {self.name}"
+
+    def get_absolute_url(self):
+        return reverse("home")
