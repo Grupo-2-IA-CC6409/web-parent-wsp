@@ -7,11 +7,11 @@
   <div class="d-flex border border-black p-5 justify-content-center">
     <form action="" method="post">
       {% csrf_token %}
-      <p>{% trans "Are you sure you want to delete" %} "{{ object }}"?</p>
+      <p>Estas seguro que quieres eliminar "{{ object }}"?</p>
       <br>
       <div class="d-flex justify-content-center">
-        <input class="btn btn-outline-danger mr-2" type="submit" value="{% trans 'Confirm' %}">
-        <a class="btn btn-outline-secondary" href="{{ object.get_absolute_url }}">{% trans "Cancel" %}</a>
+        <input class="btn btn-outline-danger mr-2" type=e"submit" value="Confirmar">
+        <a class="btn btn-outline-secondary" href="{{ object.get_absolute_url }}">Cancelar</a>
       </div>
     </form>
   </div>

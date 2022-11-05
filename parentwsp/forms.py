@@ -13,3 +13,9 @@ class SessionForm(forms.ModelForm):
         widgets = {
             "external_uuid": forms.HiddenInput(),
         }
+
+
+class SessionChangeForm(forms.ModelForm):
+    class Meta:
+        model = Session
+        fields = ("name",)
