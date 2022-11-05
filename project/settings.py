@@ -20,10 +20,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 MEDIA_URL = "/uploads/"
 
-# Define Static root and url
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-STATIC_URL = "/static/"
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -149,3 +145,6 @@ LOGOUT_REDIRECT_URL = "/"
 
 # enable bootstrap for crispy-forms
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+# API stuff
+WSP_API_URL = os.environ.get("WSP_API_URL", "127.0.0.1:3000")

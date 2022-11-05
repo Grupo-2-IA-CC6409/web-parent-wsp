@@ -1,0 +1,36 @@
+{% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<form id="formQR" enctype="multipart/form-data" action="{{action}}" method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <input class="btn btn-primary" type="submit" value="{% translate 'Submit' %}">
+</form>
+<div class="row justify-content-md-center">
+  <div class="col-md-auto">
+    {# texto obteniendo qr #}
+    <h2 id="loadingQRText">Obteniendo QR...</h2>
+    {# texto qr obtenido #}
+    <h2 id="qrLoadedText" class="d-none">Escanea este codigo desde whatsapp para guardar la sesion</h2>
+    {# texto qr obtenido pero sesion ya iniciada #}
+    <h2 id="connectedH1" class="text-danger d-none">Can't create session currently, still in development</h2>
+    {# texto sesion inciada #}
+    <h2 id="sessionStarted" class="d-none">Ponle nombre a tu sesion para guardarla</h2>
+  </div>
+</div>
+
+{# qr #}
+<div class="row justify-content-md-center">
+  <div class="col-md-auto">
+    <img id='qrCode' class="d-none" src="" alt="" width="400" height="400" />
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ WSP_API_URL | json_script:"WSP_API_URL" }}
+<script src="{% static "parentwsp/qr-code.js" %}"></script>
+{% endblock %}
