@@ -27,7 +27,7 @@ MEDIA_URL = "/uploads/"
 SECRET_KEY = "django-insecure--2i_co0aq2u%s9$e$*+0(d5(izu1+z4^6r#b1sc$7r@rvc@1zn"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", True)
+DEBUG = os.environ.get("DEBUG") != "False"
 
 ALLOWED_HOSTS = []
 
@@ -133,6 +133,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 STATIC_URL = "static/"
 
 # Default primary key field type
