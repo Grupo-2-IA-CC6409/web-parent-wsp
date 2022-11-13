@@ -23,7 +23,7 @@ cp example.env .env
 ```
 Por ultimo para instalar [pre-commit](https://pre-commit.com)
 ```sh
-./install-pre-commit.sh
+pre-commit install --install-hooks
 ```
 
 ### Correr el proyecto

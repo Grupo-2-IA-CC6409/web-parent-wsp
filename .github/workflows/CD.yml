@@ -25,13 +25,10 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Install pre-commit hooks
       run: |
-        sh install-pre-commit.sh
-    - name: Run pre-commit hooks
+        pre-commit install --install-hooks
+    - name: Run code checks
       run: |
-        pre-commit run -a --hook-stage commit
-    - name: Run pre-push hooks
-      run: |
-        pre-commit run -a --hook-stage push
+        pre-commit run -a
     - name: Run tests
       run: |
         python3 manage.py test
