@@ -28,3 +28,18 @@ class Session(models.Model):
 
     def get_absolute_url(self):
         return reverse("home")
+
+
+class Message(models.Model):
+    """CLass that represents a bullying message."""
+
+    session = models.ForeignKey(
+        Session,
+        on_delete=models.CASCADE,
+        verbose_name="session",
+        related_name="messages",
+    )
+    message = models.CharField()
+    chat = models.CharField()
+    sender = models.CharField()
+    sender_number = models.CharField()
