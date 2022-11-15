@@ -1,0 +1,33 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class=" border border-black p-5">
+  <h2>Sesión: {{ session.name }}</h2>
+  <br>
+  <p>
+  {% for notification in object_list %}
+  <div class="card mb-2">
+    <div class="card-body">
+      <div class="row">
+        <h5 class=" ml-2">Notificación {{ forloop.counter }}</h5>
+      </div>
+      <div class="row">
+        <p class=" ml-2">Nombre del chat: {{ notification.chat_name }}</p>
+      </div>
+      <div class="row">
+        <p class=" ml-2">Nombre del remitente: {{ notification.sender }}</p>
+      </div>
+      <div class="row">
+        <p class=" ml-2">Número del remitente: +{{ notification.sender_number }}</p>
+      </div>
+      <div class="row">
+        <p class=" ml-2">Mensaje:<br>{{ notification.message }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <br>
+  <a class="btn btn-outline-secondary" href="{% url "home" %}">Atras</a>
+</div>  
+{% endblock %}
