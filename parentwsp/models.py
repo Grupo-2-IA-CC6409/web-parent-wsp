@@ -52,3 +52,6 @@ class Notification(models.Model):
         "sende number",
         max_length=255,
     )
+
+    def get_absolute_url(self):
+        return reverse("home")
