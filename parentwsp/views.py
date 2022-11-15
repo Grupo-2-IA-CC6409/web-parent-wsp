@@ -53,6 +53,19 @@ class SessionUpdateView(BaseUpdateView):
     def get_title(self):
         return f"Modificar {self.object}"
 
+class SessionNotifyView(BaseUpdateView):
+    template_name = "parentwsp/sessions/notify.html"
+    login_required = True
+    permission_required = ()
+    model = Session
+    form_class = SessionChangeForm
+
+    def can_access(self, request):
+        return self.object.user == request.user
+
+    def get_title(self):
+        return f"Modificar {self.object}"
+
 
 class SessionDeleteView(BaseDeleteView):
     template_name = "parentwsp/sessions/delete.html"

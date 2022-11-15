@@ -6,6 +6,7 @@ session_urlpatterns = [
     path("create/", views.SessionCreateView.as_view(), name="session_create"),
     path("<int:pk>/delete/", views.SessionDeleteView.as_view(), name="session_delete"),
     path("<int:pk>/update/", views.SessionUpdateView.as_view(), name="session_update"),
+    path("<int:pk>/notify/", views.SessionNotifyView.as_view(), name="session_notify"),
 ]
 
 urlpatterns = [
