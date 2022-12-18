@@ -17,6 +17,8 @@ class Session(models.Model):
         verbose_name="usuario",
         related_name="sesiones",
     )
+
+
     name = models.CharField(
         "nombre",
         max_length=255,
@@ -57,8 +59,15 @@ class Notification(models.Model):
         max_length=255,
     )
     sender_number = models.CharField(
-        "sende number",
+        "sender number",
         max_length=255,
+    )
+    sender_name = models.CharField(
+        "sender name",
+        max_length=255,
+    )
+    date = models.DateTimeField(
+        "date",
     )
 
     def get_absolute_url(self):

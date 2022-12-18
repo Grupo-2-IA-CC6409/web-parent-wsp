@@ -11,6 +11,8 @@ class NotificationSerializer(ModelSerializer):
             "session",
             "message",
             "chat_name",
+            "date",
             "sender",
             "sender_number",
+            "sender_name",
         )

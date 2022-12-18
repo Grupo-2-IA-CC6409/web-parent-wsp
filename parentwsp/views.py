@@ -12,6 +12,10 @@ from parentwsp.forms import SessionChangeForm, SessionForm
 from .enums import StatusChoices
 from .models import Notification, Session
 from .serializers import NotificationSerializer
+import smtplib
+import ssl
+from email.message import EmailMessage
+from datetime import datetime
 
 
 class SessionListView(BaseListView):
@@ -22,6 +26,7 @@ class SessionListView(BaseListView):
     model = Session
 
     def get_queryset(self):
+
         user = self.request.user
         return Session.objects.filter(user=user).order_by("status")
 
@@ -40,6 +45,7 @@ class SessionCreateView(BaseCreateView):
     form_class = SessionForm
 
     def form_valid(self, form):
+
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
@@ -121,9 +127,31 @@ class SessionNotificationAPI(APIView):
             "chat_name": request.data.get("chat_name"),
             "sender": request.data.get("sender"),
             "sender_number": request.data.get("sender_number"),
+            "sender_name": request.data.get("sender_name"),
+            "date": datetime.utcfromtimestamp(int(request.data.get("date"))).strftime(
+                "%Y-%m-%d %H:%M:%S"
+            ),
         }
 
         serializer = NotificationSerializer(data=data)
+
+        email_address = "wsp.parental@gmail.com"
+        email_password = "fxvaeakhwfokkuch"
+        # create email
+        ctx = ssl.create_default_context()
+        msg = EmailMessage()
+        msg["Subject"] = "Notificación"
+        msg["From"] = email_address
+        msg["To"] = Session.objects.get(
+            external_uuid=request.data.get("session")
+        ).user.email
+        msg.set_content("Se ha identificado un mensaje de odio")
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ctx) as smtp:
+            smtp.login(email_address, email_password)
+            smtp.send_message(msg)
+        # print(Session.objects.get(
+        #         external_uuid=request.data.get("session")
+        #     ).user.email)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

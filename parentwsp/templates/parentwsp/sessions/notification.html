@@ -24,7 +24,13 @@
         <p class=" ml-2">Nombre del remitente: {{ notification.sender }}</p>
       </div>
       <div class="row">
+        <p class=" ml-2">Usuario del remitente: {{ notification.sender_name }}</p>
+      </div>
+      <div class="row">
         <p class=" ml-2">Número del remitente: +{{ notification.sender_number }}</p>
+      </div>
+      <div class="row">
+        <p class=" ml-2">Fecha: {{ notification.date }}</p>
       </div>
       <div class="row">
         <p class=" ml-2">Mensaje:<br>{{ notification.message }}</p>
