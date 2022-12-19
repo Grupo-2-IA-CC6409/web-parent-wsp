@@ -149,4 +149,4 @@ LOGOUT_REDIRECT_URL = "/"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # API stuff
-WSP_API_URL = os.environ.get("WSP_API_URL", "127.0.0.1:3000")
+WSP_API_URL = os.environ.get("WSP_API_URL", "http://127.0.0.1:3000")

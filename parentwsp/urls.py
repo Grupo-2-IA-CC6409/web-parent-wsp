@@ -2,8 +2,9 @@ from django.urls import include, path
 
 from . import views
 
-session_notification_urlpatterns = [
-    path("api/", views.SessionNotificationAPI.as_view()),
+session_api_urlpatterns = [
+    path("notification/", views.SessionNotificationAPI.as_view()),
+    path("disconnect/", views.SessionDisconnectAPI.as_view()),
 ]
 
 session_urlpatterns = [
@@ -15,7 +16,7 @@ session_urlpatterns = [
         views.SessionNotificationView.as_view(),
         name="session_notifications",
     ),
-    path("notification/", include(session_notification_urlpatterns)),
+    path("api/", include(session_api_urlpatterns)),
 ]
 
 urlpatterns = [

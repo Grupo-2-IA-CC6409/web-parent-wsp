@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from base.views import BaseCreateView, BaseDeleteView, BaseListView, BaseUpdateView
 from parentwsp.forms import SessionChangeForm, SessionForm
 
+from .enums import StatusChoices
 from .models import Notification, Session
 from .serializers import NotificationSerializer
 
@@ -22,7 +23,12 @@ class SessionListView(BaseListView):
 
     def get_queryset(self):
         user = self.request.user
-        return Session.objects.filter(user=user)
+        return Session.objects.filter(user=user).order_by("status")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["statusChoices"] = StatusChoices
+        return context
 
 
 class SessionCreateView(BaseCreateView):
@@ -121,3 +127,14 @@ class SessionNotificationAPI(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class SessionDisconnectAPI(APIView):
+    http_method_names = ["post"]
+
+    def post(self, request, *args, **kwargs):
+        session = Session.objects.get(external_uuid=request.data.get("session"))
+        session.status = StatusChoices.DISCONNECTED
+        session.save()
+
+        return Response(status=status.HTTP_200_OK)
