@@ -100,6 +100,7 @@ class SessionNotificationView(BaseListView):
         context = super().get_context_data(**kwargs)
         session_pk = self.kwargs.get("pk")
         context["session"] = Session.objects.get(pk=session_pk)
+        context["statusChoices"] = StatusChoices
         return context
 
     def get_title(self):

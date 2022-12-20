@@ -21,6 +21,8 @@
                 <div class="col-3">
                     {% if session.status == statusChoices.DISCONNECTED %}
                     <span class="mx-2 badge badge-pill badge-danger">Desconectado</span>
+                    {% else %}
+                    <span class="mx-2 badge badge-pill badge-success">Conectado</span>
                     {% endif %}
                 </div>
                 <div class="col-1">

@@ -4,6 +4,11 @@
 {% block content %}
 <div class=" border border-black p-5">
   <h2>Sesión: {{ session.name }}</h2>
+  {% if session.status == statusChoices.DISCONNECTED %}
+  <span class="mx-2 badge badge-pill badge-danger">Desconectado</span>
+  {% else %}
+  <span class="mx-2 badge badge-pill badge-success">Conectado</span>
+  {% endif %}
   <br>
   <p>
   {% for notification in object_list %}
