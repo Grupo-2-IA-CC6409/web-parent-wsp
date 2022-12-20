@@ -17,8 +17,6 @@ class Session(models.Model):
         verbose_name="usuario",
         related_name="sesiones",
     )
-
-
     name = models.CharField(
         "nombre",
         max_length=255,

@@ -1,3 +1,8 @@
+import smtplib
+import ssl
+from datetime import datetime
+from email.message import EmailMessage
+
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -12,10 +17,6 @@ from parentwsp.forms import SessionChangeForm, SessionForm
 from .enums import StatusChoices
 from .models import Notification, Session
 from .serializers import NotificationSerializer
-import smtplib
-import ssl
-from email.message import EmailMessage
-from datetime import datetime
 
 
 class SessionListView(BaseListView):
@@ -133,11 +134,9 @@ class SessionNotificationAPI(APIView):
             ),
         }
 
-        serializer = NotificationSerializer(data=data)
-
+        # create email
         email_address = "wsp.parental@gmail.com"
         email_password = "fxvaeakhwfokkuch"
-        # create email
         ctx = ssl.create_default_context()
         msg = EmailMessage()
         msg["Subject"] = "Notificación"
@@ -149,9 +148,7 @@ class SessionNotificationAPI(APIView):
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ctx) as smtp:
             smtp.login(email_address, email_password)
             smtp.send_message(msg)
-        # print(Session.objects.get(
-        #         external_uuid=request.data.get("session")
-        #     ).user.email)
+        serializer = NotificationSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
