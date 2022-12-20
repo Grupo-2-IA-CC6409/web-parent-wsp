@@ -1,3 +1,8 @@
+import smtplib
+import ssl
+from datetime import datetime
+from email.message import EmailMessage
+
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -22,6 +27,7 @@ class SessionListView(BaseListView):
     model = Session
 
     def get_queryset(self):
+
         user = self.request.user
         return Session.objects.filter(user=user).order_by("status")
 
@@ -40,6 +46,7 @@ class SessionCreateView(BaseCreateView):
     form_class = SessionForm
 
     def form_valid(self, form):
+
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
@@ -121,8 +128,26 @@ class SessionNotificationAPI(APIView):
             "chat_name": request.data.get("chat_name"),
             "sender": request.data.get("sender"),
             "sender_number": request.data.get("sender_number"),
+            "sender_name": request.data.get("sender_name"),
+            "date": datetime.utcfromtimestamp(int(request.data.get("date"))).strftime(
+                "%Y-%m-%d %H:%M:%S"
+            ),
         }
 
+        # create email
+        email_address = "wsp.parental@gmail.com"
+        email_password = "fxvaeakhwfokkuch"
+        ctx = ssl.create_default_context()
+        msg = EmailMessage()
+        msg["Subject"] = "Notificación"
+        msg["From"] = email_address
+        msg["To"] = Session.objects.get(
+            external_uuid=request.data.get("session")
+        ).user.email
+        msg.set_content("Se ha identificado un mensaje de odio")
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ctx) as smtp:
+            smtp.login(email_address, email_password)
+            smtp.send_message(msg)
         serializer = NotificationSerializer(data=data)
         if serializer.is_valid():
             serializer.save()

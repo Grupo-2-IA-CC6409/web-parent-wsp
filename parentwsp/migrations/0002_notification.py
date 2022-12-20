@@ -31,7 +31,15 @@ class Migration(migrations.Migration):
                 ("sender", models.CharField(max_length=255, verbose_name="sender")),
                 (
                     "sender_number",
-                    models.CharField(max_length=255, verbose_name="sende number"),
+                    models.CharField(max_length=255, verbose_name="sender number"),
+                ),
+                (
+                    "sender_name",
+                    models.CharField(max_length=255, verbose_name="sender name"),
+                ),
+                (
+                    "date",
+                    models.DateTimeField( verbose_name="date"),
                 ),
                 (
                     "session",
