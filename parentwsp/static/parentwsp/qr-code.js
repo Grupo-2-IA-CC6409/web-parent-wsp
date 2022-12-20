@@ -19,6 +19,7 @@ $(async () => {
       qrCode.attr('alt', qr);
       qrCode.attr('src', url);
       qrCode.removeClass("d-none");
+      loadingQrText.removeClass("d-flex");
       loadingQrText.addClass("d-none");
       qrLoadedText.removeClass("d-none");
   }
@@ -35,6 +36,7 @@ $(async () => {
     }
     if (status === "connected" && context.runs === 0) {
       $("#connectedH1").toggleClass("d-none");
+      loadingQrText.removeClass("d-flex");
       loadingQrText.addClass("d-none");
       await clearIntervalAsync(timer);
     } 

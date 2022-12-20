@@ -5,6 +5,8 @@ from django.urls import reverse
 
 from accounts.models import User
 
+from .enums import StatusChoices
+
 
 class Session(models.Model):
     """Class that represents a Session."""
@@ -21,6 +23,12 @@ class Session(models.Model):
     )
     external_uuid = models.UUIDField(
         default=uuid.uuid4,
+    )
+    status = models.CharField(
+        "estado",
+        max_length=255,
+        choices=StatusChoices.CHOICES,
+        default=StatusChoices.CONNECTED,
     )
 
     def __str__(self) -> str:

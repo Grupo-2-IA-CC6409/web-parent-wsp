@@ -12,11 +12,18 @@
           <div class="card mb-2">
             <div class="card-body">
               <div class="row">
-                <div class="col-11">
+                <div class="col-8">
                   <div class="row m-0">
                     <p class="m-0 mr-2">{{ session.name }}</p>
                     <i class="fa-solid fa-circle-exclamation"></i>
                   </div>
+                </div>
+                <div class="col-3">
+                    {% if session.status == statusChoices.DISCONNECTED %}
+                    <span class="mx-2 badge badge-pill badge-danger">Desconectado</span>
+                    {% else %}
+                    <span class="mx-2 badge badge-pill badge-success">Conectado</span>
+                    {% endif %}
                 </div>
                 <div class="col-1">
                   <object>
