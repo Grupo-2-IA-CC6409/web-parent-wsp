@@ -12,7 +12,12 @@
 <div class="row justify-content-md-center">
   <div class="col-md-auto">
     {# texto obteniendo qr #}
-    <h2 id="loadingQRText">Obteniendo QR...</h2>
+    <div id="loadingQRText" class="d-flex flex-column align-items-center">
+      <h2>Obteniendo QR</h2>
+      <div class="mt-5 spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+      </div>
+    </div>
     {# texto qr obtenido #}
     <h2 id="qrLoadedText" class="d-none">Escanea este codigo desde whatsapp para guardar la sesion</h2>
     {# texto qr obtenido pero sesion ya iniciada #}
